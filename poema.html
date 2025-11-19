@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Poema Para Ti</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+        
+        body {
+            background-color: #f9f9f9;
+            font-family: 'Comic Neue', cursive;
+            text-align: center;
+            padding: 50px;
+            color: #333;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+         /* Decoraciones */
+        .deco-lily {
+            position: absolute;
+            width: 180px;
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .p1 { top: 10px; left: -30px; transform: rotate(45deg); }
+        .p2 { bottom: 10px; right: -30px; transform: rotate(-45deg); }
+
+        .paper {
+            background: #fff;
+            border: 2px solid black;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.8);
+            border-radius: 5px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        
+        .intro {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .riddle-box {
+            background-color: #eee;
+            border: 2px dashed black;
+            padding: 20px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .action-btn {
+            background-color: #FF4500;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border: 2px solid black;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .action-btn:hover { transform: scale(1.05); background-color: black; }
+    </style>
+</head>
+<body>
+
+    <img src="images/lirio1.png" class="deco-lily p1">
+    <img src="images/lirio2.png" class="deco-lily p2">
+
+    <div class="paper">
+        <h1>Te dedico estas líneas...</h1>
+        
+        <p class="intro">
+            Pero a veces, las cosas más valiosas no se entregan en bandeja de plata.<br>
+            Leer un poema sin más sería demasiado sencillo para alguien tan lista como tú.<br>
+            <strong>El verdadero mensaje está oculto, y tendrás que descifrarlo.</strong>
+        </p>
+
+        <div class="riddle-box">
+            <p>Pista: No busques en el silencio, busca donde la música cobra vida. <br>
+            Entre tus canciones favoritas he dejado versos escondidos.<br>
+            (Recuerda editar este texto)</p>
+        </div>
+
+        <a href="https://symondsalazar.github.io/NicolesRadio/" class="action-btn" target="_blank">
+            Ir a buscar el poema 📻
+        </a>
+    </div>
+
+</body>
+</html>

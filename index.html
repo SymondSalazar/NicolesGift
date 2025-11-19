@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regalo de Nicole</title>
+    <style>
+        /* Estilo Snoopy / Peanuts */
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+        body {
+            background-color: #fdfdfd; /* Blanco papel */
+            font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-align: center;
+            border-bottom: 3px solid black;
+            padding-bottom: 10px;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            width: 220px;
+            height: 300px;
+            perspective: 1000px; /* Para el efecto 3D */
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            border: 3px solid black;
+            border-radius: 15px;
+            box-shadow: 5px 5px 0px black; /* Sombra sólida estilo dibujo */
+            background-color: white;
+        }
+
+        .card:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border-radius: 12px;
+        }
+
+        .card-front {
+            background-color: #fff;
+            color: black;
+            font-size: 5rem;
+        }
+
+        .card-back {
+            background-color: #FFCE00; /* Amarillo Woodstock */
+            color: black;
+            transform: rotateY(180deg);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        /* Colores específicos para cada tarjeta trasera */
+        .card:nth-child(1) .card-back { background-color: #FF6B6B; } /* Rojo suave */
+        .card:nth-child(2) .card-back { background-color: #4ECDC4; } /* Turquesa suave */
+        .card:nth-child(3) .card-back { background-color: #FFCE00; } /* Amarillo */
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .btn-go {
+            margin-top: 15px;
+            padding: 8px 16px;
+            border: 2px solid black;
+            background: white;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .btn-go:hover {
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Pasa sacarle una sonrisa a Nicole</h1>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">?</div>
+                <div class="card-back">
+                    <div class="card-title">Ummm</div>
+                    <p>Un hermoso detalle para una hermosa señorita</p>
+                    <a href="poema.html" class="btn-go">Abrir</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">?</div>
+                <div class="card-back">
+                    <div class="card-title">Un lirio</div>
+                    <p>Para mi delirio</p>
+                    <a href="lirio.html" class="btn-go">Abrir</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-inner">
+                <div class="card-front">?</div>
+                <div class="card-back">
+                    <div class="card-title">Cupones</div>
+                    <p>Felicidades spritesita, te has hecho merecedora de estos cupones.</p>
+                    <a href="cupones.html" class="btn-go">Abrir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Lirio Para Nicole</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+        body {
+            background-color: #f4f4f4;
+            font-family: 'Comic Neue', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        @keyframes bloomEffect {
+            0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .lily-wrapper {
+            width: 500px; /* Tamaño de tu imagen */
+            height: 500px;
+            cursor: pointer;
+            animation: bloomEffect 2s ease-out forwards;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lily-img {
+            width: 100%;
+            height: auto;
+            animation: float 4s ease-in-out infinite;
+            animation-delay: 2s; /* Espera a aparecer para flotar */
+            filter: drop-shadow(0px 15px 10px rgba(0,0,0,0.2));
+            transition: transform 0.1s;
+        }
+
+        .lily-img:active {
+            transform: scale(0.95);
+        }
+
+        .message-container {
+            margin-top: -20px; /* Subirlo un poco */
+            opacity: 0;
+            animation: bloomEffect 1s ease-out forwards;
+            animation-delay: 1.5s;
+            z-index: 10;
+        }
+
+        .message-box {
+            padding: 20px 40px;
+            border: 3px solid black;
+            background: white;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 8px 8px 0px black;
+            font-size: 1.8rem;
+            font-weight: bold;
+            min-width: 300px;
+            color: black;
+        }
+        
+        .instruction {
+            font-size: 1rem;
+            color: #777;
+            margin-top: 20px;
+            font-style: italic;
+            opacity: 0;
+            animation: bloomEffect 1s ease-out forwards;
+            animation-delay: 2s;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="lily-wrapper" onclick="mostrarMensaje()">
+        <img src="images/lirioPremium.png" alt="Lirio Premium" class="lily-img">
+    </div>
+
+    <div class="message-container">
+        <div class="message-box" id="mensaje">
+            Hola Nicole... 🤍
+        </div>
+    </div>
+
+    <p class="instruction">(Toca la flor para ver qué te dice)</p>
+
+    <script>
+        const mensajes = [
+            "Cada día te quiero más ❤️",
+            "Eres mi flor favorita 🌻",
+            "Me encantas demasiado Nicole",
+            "Gracias por hacerme feliz ✨",
+            "Tu sonrisa ilumina todo",
+            "Contigo todo es más bonito"
+        ];
+
+        let ultimoIndice = -1;
+
+        function mostrarMensaje() {
+            const caja = document.getElementById('mensaje');
+            let indice;
+            do {
+                indice = Math.floor(Math.random() * mensajes.length);
+            } while (indice === ultimoIndice);
+            
+            ultimoIndice = indice;
+            caja.innerText = mensajes[indice];
+            
+            // Efecto pop
+            caja.style.transform = "scale(1.1)";
+            setTimeout(() => caja.style.transform = "scale(1)", 200);
+        }
+    </script>
+
+</body>
+</html>

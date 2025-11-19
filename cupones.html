@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cupones para Nicole</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Comic Neue', cursive;
+            background: #f0f0f0;
+            overflow: hidden; /* Evita el scroll de la página entera */
+        }
+
+        /* Contenedor Horizontal (El carril de diapositivas) */
+        .slider-container {
+            display: flex;
+            flex-direction: row; /* Alineación horizontal */
+            width: 100vw;
+            height: 100vh;
+            overflow-x: scroll; /* Habilita scroll horizontal */
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory; /* Efecto de imán horizontal */
+            scroll-behavior: smooth;
+            
+            /* Ocultar barra de scroll para que se vea limpio */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .slider-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        /* Cada sección ocupa el 100% del ancho de la pantalla */
+        .coupon-section {
+            min-width: 100vw;
+            height: 100vh;
+            scroll-snap-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden; /* Para cortar las imágenes decorativas que sobresalgan */
+        }
+
+        /* Estilo de la Tarjeta estilo Snoopy/Tinder */
+        .coupon-card {
+            background: white;
+            border: 4px solid black;
+            width: 300px;
+            height: 450px;
+            border-radius: 25px;
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.8); /* Sombra dura estilo dibujo */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        /* Título del cupón */
+        .coupon-header {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            border-bottom: 3px solid black;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        /* Contenido del cupón */
+        .coupon-content {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        /* Pie del cupón */
+        .coupon-footer {
+            margin-top: auto;
+            font-size: 0.9rem;
+            color: #555;
+            border-top: 2px dashed black;
+            width: 100%;
+            padding-top: 15px;
+        }
+        .coupon-footer::before {
+            content: '✂️';
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        /* Indicador de deslizamiento */
+        .swipe-hint {
+            position: absolute;
+            bottom: 30px;
+            background: rgba(255,255,255,0.8);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            border: 2px solid black;
+            z-index: 20;
+            pointer-events: none; /* Para que no interfiera con el touch */
+            animation: sway 2s infinite ease-in-out;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+
+        /* Decoraciones de Lirios flotantes */
+        .deco-lily {
+            position: absolute;
+            width: 200px;
+            opacity: 0.15; /* Marca de agua suave */
+            z-index: 1;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="slider-container" id="slider">
+        </div>
+
+    <div class="swipe-hint">← Desliza →</div>
+
+    <script>
+        // --- LISTA DE CUPONES EDITABLE ---
+        const cupones = [
+            "Vale por: Una tarde de películas y mimos 🍿",
+            "Vale por: Un masaje relajante (sin límite de tiempo) 💆‍♀️",
+            "Vale por: Una cena romántica donde tú quieras 🍔🍷",
+            "Vale por: Ganar una discusión automáticamente 🏆",
+            "Vale por: Un beso apasionado AHORA MISMO 💋",
+            "Vale por: Un helado o postre de tu elección 🍦",
+            "Vale por: Una escapada sorpresa (cuando se pueda) ✈️"
+        ];
+
+        // Colores de la paleta Snoopy
+        const colores = ['#FF6B6B', '#4ECDC4', '#FFCE00', '#87CEEB'];
+
+        const contenedor = document.getElementById('slider');
+
+        cupones.forEach((texto, index) => {
+            // Crear la sección que ocupa toda la pantalla
+            const section = document.createElement('div');
+            section.classList.add('coupon-section');
+            
+            // Asignar color de fondo aleatorio
+            const colorFondo = colores[Math.floor(Math.random() * colores.length)];
+            section.style.backgroundColor = colorFondo;
+
+            // Elegir una imagen de lirio decorativa aleatoria (1 a 4)
+            const numLirio = (index % 4) + 1; // Cicla 1, 2, 3, 4
+            
+            // Posiciones aleatorias para la decoración
+            const topPos = Math.random() * 80; 
+            const leftPos = Math.random() * 80;
+            const rotation = Math.random() * 360;
+
+            section.innerHTML = `
+                <img src="images/lirio${numLirio}.png" class="deco-lily" 
+                     style="top: ${topPos}%; left: ${leftPos}%; transform: rotate(${rotation}deg);">
+
+                <div class="coupon-card">
+                    <div class="coupon-header">Cupón #${index + 1}</div>
+                    <div class="coupon-content">
+                        ${texto}
+                    </div>
+                    <div class="coupon-footer">
+                        Válido exclusivamente para Nicole
+                    </div>
+                </div>
+            `;
+
+            contenedor.appendChild(section);
+        });
+    </script>
+
+</body>
+</html>
