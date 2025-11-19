@@ -17,7 +17,28 @@
             justify-content: center;
             min-height: 100vh;
             margin: 0;
+            position: relative;
+            overflow-x: hidden;
         }
+        
+        /* Decoraciones de lirios */
+        .deco-lily {
+            position: absolute;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
+            animation: gentleFloat 8s ease-in-out infinite;
+        }
+        
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        
+        .lily1 { width: 180px; top: 8%; left: 3%; animation-delay: 0s; }
+        .lily2 { width: 160px; top: 15%; right: 5%; animation-delay: 1.5s; }
+        .lily3 { width: 140px; bottom: 12%; left: 8%; animation-delay: 3s; }
+        .lily4 { width: 170px; bottom: 8%; right: 10%; animation-delay: 2s; }
 
         h1 {
             font-size: 3rem;
@@ -25,6 +46,8 @@
             text-align: center;
             border-bottom: 3px solid black;
             padding-bottom: 10px;
+            position: relative;
+            z-index: 1;
         }
 
         .container {
@@ -32,6 +55,8 @@
             gap: 30px;
             flex-wrap: wrap;
             justify-content: center;
+            position: relative;
+            z-index: 1;
         }
 
         .card {
@@ -116,7 +141,13 @@
 </head>
 <body>
 
-    <h1>Pasa sacarle una sonrisa a Nicole</h1>
+    <!-- Decoraciones de lirios flotantes -->
+    <img src="images/lirio1.png" class="deco-lily lily1">
+    <img src="images/lirio2.png" class="deco-lily lily2">
+    <img src="images/lirio3.png" class="deco-lily lily3">
+    <img src="images/lirio4.png" class="deco-lily lily4">
+
+    <h1>Para sacarle una sonrisa a Nicole</h1>
 
     <div class="container">
         <div class="card">

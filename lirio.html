@@ -14,9 +14,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             overflow: hidden;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         @keyframes bloomEffect {
@@ -30,13 +32,15 @@
         }
 
         .lily-wrapper {
-            width: 500px; /* Tamaño de tu imagen */
-            height: 500px;
+            width: 90vw;
+            max-width: 500px;
+            height: auto;
             cursor: pointer;
             animation: bloomEffect 2s ease-out forwards;
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 20px;
         }
 
         .lily-img {
@@ -44,7 +48,6 @@
             height: auto;
             animation: float 4s ease-in-out infinite;
             animation-delay: 2s; /* Espera a aparecer para flotar */
-            filter: drop-shadow(0px 15px 10px rgba(0,0,0,0.2));
             transition: transform 0.1s;
         }
 
@@ -53,11 +56,16 @@
         }
 
         .message-container {
-            margin-top: -20px; /* Subirlo un poco */
+            margin-top: 0;
             opacity: 0;
             animation: bloomEffect 1s ease-out forwards;
             animation-delay: 1.5s;
             z-index: 10;
+            width: 90%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .message-box {
@@ -69,8 +77,11 @@
             box-shadow: 8px 8px 0px black;
             font-size: 1.8rem;
             font-weight: bold;
-            min-width: 300px;
+            min-width: 200px;
+            width: 100%;
+            max-width: 400px;
             color: black;
+            box-sizing: border-box;
         }
         
         .instruction {
@@ -81,6 +92,32 @@
             opacity: 0;
             animation: bloomEffect 1s ease-out forwards;
             animation-delay: 2s;
+            text-align: center;
+        }
+
+        /* Responsive para pantallas pequeñas */
+        @media (max-width: 600px) {
+            .lily-wrapper {
+                width: 85vw;
+            }
+            
+            .message-box {
+                font-size: 1.4rem;
+                padding: 15px 25px;
+                box-shadow: 5px 5px 0px black;
+            }
+            
+            .instruction {
+                font-size: 0.9rem;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .message-box {
+                font-size: 1.2rem;
+                padding: 12px 20px;
+            }
         }
 
     </style>
@@ -93,35 +130,45 @@
 
     <div class="message-container">
         <div class="message-box" id="mensaje">
-            Hola Nicole... 🤍
+            Ojala te este gustando
         </div>
     </div>
 
-    <p class="instruction">(Toca la flor para ver qué te dice)</p>
-
-    <script>
+    <p class="instruction">(Amor toca el lirio)</p>
+<script>
         const mensajes = [
-            "Cada día te quiero más ❤️",
-            "Eres mi flor favorita 🌻",
-            "Me encantas demasiado Nicole",
-            "Gracias por hacerme feliz ✨",
-            "Tu sonrisa ilumina todo",
-            "Contigo todo es más bonito"
+            "Soy demasiado malo con las palabras",
+            "Solo quiero que hoy en tu día",
+            "La pases de maravilla",
+            "Siempre te lo digo",
+            "Y te lo voy a repetir mil veces",
+            "Eres demasiado: inteligente, amable...",
+            "Carismática, alegre, enojona, preciosa.",
+            "Qué suerte que seas mi novia, amor",
+            "Me haces feliz la mayoría de los días",
+            "Y ya no sé qué más decir, amor",
+            "Ve a la siguiente página si no la has visto",
+            "Los mensajes se van a repetir..."
         ];
 
-        let ultimoIndice = -1;
+        // Iniciamos en 0 (el primer mensaje)
+        let indiceActual = 0;
 
         function mostrarMensaje() {
             const caja = document.getElementById('mensaje');
-            let indice;
-            do {
-                indice = Math.floor(Math.random() * mensajes.length);
-            } while (indice === ultimoIndice);
             
-            ultimoIndice = indice;
-            caja.innerText = mensajes[indice];
+            // 1. Mostramos el mensaje que toca actualmente
+            caja.innerText = mensajes[indiceActual];
             
-            // Efecto pop
+            // 2. Aumentamos el índice para la próxima vez
+            indiceActual++;
+
+            // 3. Si llegamos al final de la lista, volvemos a empezar (0)
+            if (indiceActual >= mensajes.length) {
+                indiceActual = 0;
+            }
+            
+            // Efecto pop (se mantiene igual)
             caja.style.transform = "scale(1.1)";
             setTimeout(() => caja.style.transform = "scale(1)", 200);
         }
