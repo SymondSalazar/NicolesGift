@@ -1,181 +1,182 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cupones para Spritesita</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap");
 
-        body {
-            margin: 0;
-            font-family: 'Comic Neue', cursive;
-            background: #f0f0f0;
-            overflow: hidden;
-        }
+      body {
+        margin: 0;
+        font-family: "Comic Neue", cursive;
+        background: #f0f0f0;
+        overflow: hidden;
+      }
 
-        /* Contenedor Horizontal */
-        .slider-container {
-            display: flex;
-            flex-direction: row;
-            width: 100vw;
-            height: 100vh;
-            overflow-x: scroll;
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+      /* Contenedor Horizontal */
+      .slider-container {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 100vh;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
 
-        .slider-container::-webkit-scrollbar {
-            display: none;
-        }
+      .slider-container::-webkit-scrollbar {
+        display: none;
+      }
 
-        /* Sección del cupón */
-        .coupon-section {
-            min-width: 100vw;
-            height: 100vh;
-            scroll-snap-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
+      /* Sección del cupón */
+      .coupon-section {
+        min-width: 100vw;
+        height: 100vh;
+        scroll-snap-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
 
-        /* Tarjeta estilo Snoopy */
-        .coupon-card {
-            background: white;
-            border: 4px solid black;
-            width: 300px;
-            height: 450px;
-            border-radius: 25px;
-            box-shadow: 12px 12px 0px rgba(0,0,0,0.8);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px;
-            box-sizing: border-box;
-            position: relative;
-            z-index: 10;
-            transition: transform 0.3s;
-            text-align: center;
-        }
+      /* Tarjeta estilo Snoopy */
+      .coupon-card {
+        background: white;
+        border: 4px solid black;
+        width: 300px;
+        height: 450px;
+        border-radius: 25px;
+        box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.8);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 10;
+        transition: transform 0.3s;
+        text-align: center;
+      }
 
-        .coupon-header {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            border-bottom: 3px solid black;
-            width: 100%;
-            padding-bottom: 10px;
-        }
+      .coupon-header {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        border-bottom: 3px solid black;
+        width: 100%;
+        padding-bottom: 10px;
+      }
 
-        .coupon-content {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            font-weight: bold;
-            padding: 10px;
-        }
+      .coupon-content {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        font-weight: bold;
+        padding: 10px;
+      }
 
-        .coupon-footer {
-            margin-top: auto;
-            font-size: 0.9rem;
-            color: #555;
-            border-top: 2px dashed black;
-            width: 100%;
-            padding-top: 15px;
-        }
-        .coupon-footer::before {
-            content: '';
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
+      .coupon-footer {
+        margin-top: auto;
+        font-size: 0.9rem;
+        color: #555;
+        border-top: 2px dashed black;
+        width: 100%;
+        padding-top: 15px;
+      }
+      .coupon-footer::before {
+        content: "";
+        display: block;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+      }
 
-        /* Indicador de deslizamiento */
-        .swipe-hint {
-            position: absolute;
-            bottom: 30px;
-            background: rgba(255,255,255,0.8);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            border: 2px solid black;
-            z-index: 20;
-            pointer-events: none;
-            animation: sway 2s infinite ease-in-out;
-        }
+      /* Indicador de deslizamiento */
+      .swipe-hint {
+        position: absolute;
+        bottom: 30px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        border: 2px solid black;
+        z-index: 20;
+        pointer-events: none;
+        animation: sway 2s infinite ease-in-out;
+      }
 
-        @keyframes sway {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(10px); }
+      @keyframes sway {
+        0%,
+        100% {
+          transform: translateX(0);
         }
-
-        /* Decoraciones */
-        .deco-lily {
-            position: absolute;
-            width: 200px;
-            opacity: 0.15;
-            z-index: 1;
-            pointer-events: none;
+        50% {
+          transform: translateX(10px);
         }
+      }
 
+      /* Decoraciones */
+      .deco-lily {
+        position: absolute;
+        width: 200px;
+        opacity: 0.15;
+        z-index: 1;
+        pointer-events: none;
+      }
     </style>
-</head>
-<body>
-
-    <div class="slider-container" id="slider">
-    </div>
+  </head>
+  <body>
+    <div class="slider-container" id="slider"></div>
 
     <div class="swipe-hint">← Desliza →</div>
 
     <script>
-        const cupones = [
-            "Vale por: Una salida al San Marino (Válido siempre)",
-            "Vale por: Una sesión de besos tranqui (Válido siempre)",
-            "Vale por: Una sesión para pintarte las uñas (Válido siempre)",
-            "Vale por: Una salida a ver Avatar fire and ash (Será canjeado en Diciembre)",
-            "Vale por: Unos besos bien apasionados (Válido cuando estemos solos)",
-            "Vale por: Sesiones de cine conmigo (Válido siempre)",
-            "Vale por: Unos abrazos bien asfixiantes (Sin limite)"
-        ];
+      const cupones = [
+        "No sabes lo mucho que te aprecio",
+        "Tus regalos son los mas hermosos que he tenido",
+        "Amo escucharte hablar, bailar y cantar",
+        "Te amo amor",
+        "yyyyyyy ....",
+        "Deberias fijarte en la expiracion de los cupones",
+      ];
 
-        const colores = ['#FF6B6B', '#4ECDC4', '#FFCE00', '#87CEEB'];
-        const contenedor = document.getElementById('slider');
+      const colores = ["#FF6B6B", "#4ECDC4", "#FFCE00", "#87CEEB"];
+      const contenedor = document.getElementById("slider");
 
-        // Variable para recordar el índice del color anterior
-        let ultimoIndiceColor = -1;
+      // Variable para recordar el índice del color anterior
+      let ultimoIndiceColor = -1;
 
-        cupones.forEach((texto, index) => {
-            const section = document.createElement('div');
-            section.classList.add('coupon-section');
-            
-            // --- LÓGICA DE COLORES MODIFICADA ---
-            let nuevoIndice;
-            
-            // Bucle: Sigue buscando un número aleatorio MIENTRAS sea igual al anterior
-            do {
-                nuevoIndice = Math.floor(Math.random() * colores.length);
-            } while (nuevoIndice === ultimoIndiceColor);
+      cupones.forEach((texto, index) => {
+        const section = document.createElement("div");
+        section.classList.add("coupon-section");
 
-            // Actualizamos el "último índice" para la siguiente vuelta
-            ultimoIndiceColor = nuevoIndice;
-            section.style.backgroundColor = colores[nuevoIndice];
-            // ------------------------------------
+        // --- LÓGICA DE COLORES MODIFICADA ---
+        let nuevoIndice;
 
-            // Lógica de decoración (Lirios)
-            const numLirio = (index % 4) + 1;
-            const topPos = Math.random() * 80; 
-            const leftPos = Math.random() * 80;
-            const rotation = Math.random() * 360;
+        // Bucle: Sigue buscando un número aleatorio MIENTRAS sea igual al anterior
+        do {
+          nuevoIndice = Math.floor(Math.random() * colores.length);
+        } while (nuevoIndice === ultimoIndiceColor);
 
-            section.innerHTML = `
+        // Actualizamos el "último índice" para la siguiente vuelta
+        ultimoIndiceColor = nuevoIndice;
+        section.style.backgroundColor = colores[nuevoIndice];
+        // ------------------------------------
+
+        // Lógica de decoración (Lirios)
+        const numLirio = (index % 4) + 1;
+        const topPos = Math.random() * 80;
+        const leftPos = Math.random() * 80;
+        const rotation = Math.random() * 360;
+
+        section.innerHTML = `
                 <img src="images/lirio${numLirio}.png" class="deco-lily" 
                      style="top: ${topPos}%; left: ${leftPos}%; transform: rotate(${rotation}deg);">
 
@@ -185,14 +186,13 @@
                         ${texto}
                     </div>
                     <div class="coupon-footer">
-                        Válido exclusivamente para Nicole Inguillay Pishpi
+                        Válido exclusivamente por 29 dias
                     </div>
                 </div>
             `;
 
-            contenedor.appendChild(section);
-        });
+        contenedor.appendChild(section);
+      });
     </script>
-
-</body>
+  </body>
 </html>
